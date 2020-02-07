@@ -59,7 +59,7 @@ public class Fish {
 		}
 		
 		if (this.facingLeft) {
-			this.x -= incX;
+			this.x += incX;
 		} else {
 			this.x += incX;
 		}
