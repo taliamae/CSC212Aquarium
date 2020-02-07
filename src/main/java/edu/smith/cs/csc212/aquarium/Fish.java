@@ -58,10 +58,10 @@ public class Fish {
 			this.x -= 1;
 		}
 		
-		if (this.facingLeft) {
-			this.x += incX;
-		} else {
-			this.x -= incX;
-		}
+		//if (this.facingLeft) {
+			//this.x += incX;
+		//} else {
+			//this.x -= incX;
+		//}
 	}
 }
