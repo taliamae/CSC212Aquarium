@@ -43,13 +43,19 @@ public class Fish {
 	}
 	
 	public void move(int incX) {
-		//Move fish toward destination
+		//Move fish toward destination in y direction
 		if (this.y < this.destY) {
 			this.y += 1;
 			//will eventually set new destination at random
+		} else if (this.y > this.destY) {
+			this.y -=1;
 		}
+		
+		//Move fish toward destination in x direction
 		if (this.x < this.destX) {
 			this.x += 1;
+		} else if (this.x > this.destX) {
+			this.x -= 1;
 		}
 		
 		if (this.facingLeft) {
