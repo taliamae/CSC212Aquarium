@@ -54,12 +54,15 @@ public class Fish {
 		
 		//Move fish toward destination in x direction
 		if (this.x < this.destX) {
-			//get fish to face right
+			this.facingLeft = false;
 			this.x += 1;
 		} else if (this.x > this.destX) {
-			//get fish to face left
-			//this.translate(x, y);
+			this.facingLeft = true;
 			this.x -= 1;
+		}
+		
+		if (this.x > this.destX - 10 && this.x < this.destX + 10) {
+			//choose new destination
 		}
 		
 		//if (this.facingLeft) {
