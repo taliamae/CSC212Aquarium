@@ -51,10 +51,14 @@ public class Fish {
 			this.y -=1;
 		}
 		
+		
 		//Move fish toward destination in x direction
 		if (this.x < this.destX) {
+			//get fish to face right
 			this.x += 1;
 		} else if (this.x > this.destX) {
+			//get fish to face left
+			//this.translate(x, y);
 			this.x -= 1;
 		}
 		
@@ -63,5 +67,11 @@ public class Fish {
 		//} else {
 			//this.x -= incX;
 		//}
+	}
+	
+	public void orient() {
+		if (this.x < this.destX) {
+			
+		}
 	}
 }
