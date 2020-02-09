@@ -2,6 +2,7 @@ package edu.smith.cs.csc212.aquarium;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.Random;
 
 public class Fish {
 	
@@ -22,11 +23,19 @@ public class Fish {
 		this.isLittle = isLittle;
 		this.facingLeft = facingLeft;
 		
-		this.destX = 450;
-		this.destY = 450;
-				
 	}
 	
+	public void newDest( ) {
+		final int HIGH = 500;
+		final int LOW = 0;
+
+		Random rand = new Random();
+		
+		this.destX = rand.nextInt(HIGH - LOW) + LOW;
+		System.out.println(this.destX);
+		this.destY = rand.nextInt(HIGH - LOW) + LOW;
+
+	}
 	public void draw(Graphics2D g) {
 		//this.move();
 		// Four types of fish
@@ -61,8 +70,12 @@ public class Fish {
 			this.x -= 1;
 		}
 		
-		if (this.x > this.destX - 10 && this.x < this.destX + 10) {
-			//choose new destination
+		if ((this.x > this.destX - 10 && 
+				this.x < this.destX + 10) || 
+				(this.y > this.destY - 10 && 
+						this.y < this.destY + 10)) {
+			
+			this.newDest( );
 		}
 		
 		//if (this.facingLeft) {

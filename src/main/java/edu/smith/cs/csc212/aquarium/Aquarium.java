@@ -46,9 +46,12 @@ public class Aquarium extends GFX {
 	int fish3X = - 100;
 	
 	// Initiate instances of fish
-	Fish nemo = new Fish(Color.magenta, 250, 250, true, true);
-	Fish dewy = new Fish(Color.cyan, 100, 100, false, false);
-
+	Fish nemo = new Fish(Color.magenta, 250, 400, true, true);
+	Fish dewy = new Fish(Color.cyan, 350, 100, false, false);
+	Fish phillip = new Fish(Color.green, 50, 30, false, true);
+	Fish marvin = new Fish(Color.yellow, 175, 70, false, true);
+	Fish amy = new Fish(Color.pink, 222, 300, true, false);
+	
 	@Override
 	public void draw(Graphics2D g) {
 		// Draw the "ocean" background.
@@ -58,10 +61,16 @@ public class Aquarium extends GFX {
 		// Draw the fish
 		nemo.draw(g);
 		dewy.draw(g);
+		phillip.draw(g);
+		marvin.draw(g);
+		amy.draw(g);
 		
 		// Move the fish!
-		nemo.move(2);
-		dewy.move(3);
+		nemo.move(4);
+		dewy.move(5);
+		phillip.move(3);
+		marvin.move(7);
+		amy.move(6);
 
 		// Draw our snail!
 		algorithm.draw(g);
