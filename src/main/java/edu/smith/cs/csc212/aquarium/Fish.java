@@ -32,7 +32,7 @@ public class Fish {
 		Random rand = new Random();
 		
 		this.destX = rand.nextInt(HIGH - LOW) + LOW;
-		System.out.println(this.destX);
+		//System.out.println(this.destX);
 		this.destY = rand.nextInt(HIGH - LOW) + LOW;
 
 	}
@@ -69,12 +69,12 @@ public class Fish {
 			this.facingLeft = true;
 			this.x -= 1;
 		}
-		
+		// Sets new dest for fish that get close to current dest
 		if ((this.x > this.destX - 10 && 
 				this.x < this.destX + 10) || 
 				(this.y > this.destY - 10 && 
 						this.y < this.destY + 10)) {
-			
+			// Fish get new random dest
 			this.newDest( );
 		}
 		

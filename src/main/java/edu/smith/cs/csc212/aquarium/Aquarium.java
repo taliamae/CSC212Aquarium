@@ -75,7 +75,8 @@ public class Aquarium extends GFX {
 		// Draw our snail!
 		algorithm.draw(g);
 
-
+		Bubble bubbles = new Bubble(0, 0);
+		bubbles.draw(g);
 		
 		if (fish3X > getWidth() + 100) {
 			fish3X = -100;
