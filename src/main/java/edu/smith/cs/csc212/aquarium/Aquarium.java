@@ -2,6 +2,8 @@ package edu.smith.cs.csc212.aquarium;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
 
 import me.jjfoley.gfx.GFX;
 
@@ -42,6 +44,9 @@ public class Aquarium extends GFX {
 		for (int i=0; i<bubbles.length; i++) {
 			bubbles[i] = new Bubble();
 		}
+		for (int i=0; i<food.length; i++) {
+			food[i] = new HungryFish();
+		}
 	}
 
 	int fish1X = getWidth() + 100;
@@ -58,14 +63,37 @@ public class Aquarium extends GFX {
 	// Creates an array of bubbles
 	Bubble[] bubbles = new Bubble[10];
 	
+	// Draw food box for hungry fish.
+	//Shape foodRect = new Rectangle2D.Double(300, 300, 200, 200);
+	
+	// Create food
+	HungryFish[] food = new HungryFish[7];
+	
+	// Set variables to larp ocean color
+	int oceanR = 0;
+	int oceanG = 0;
+	int oceanB = 200;
+	
 
 	
 	@Override
 	public void draw(Graphics2D g) {
 		// Draw the "ocean" background.
-		g.setColor(Color.blue);
+		Color ocean = new Color(this.oceanR, this.oceanG, this.oceanB);
+		g.setColor(ocean);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
+		// Make the ocean increasingly more green
+		this.oceanG += 1;
+		if (this.oceanG == 200) {
+			algorithm.wake();
+			this.oceanG -= 1;
+			System.out.println("getting bluer");
+		}
+		// When snail eats all algae, they go back to sleep
+		if (this.oceanG == 0) {
+			algorithm.sleep();
+		}
 		
 		// Draw the fish
 		nemo.draw(g);
@@ -84,6 +112,12 @@ public class Aquarium extends GFX {
 		// Draw our snail!
 		algorithm.draw(g);
 		
+		
+		
+		for (HungryFish f : this.food) {
+			f.draw(g);
+		}
+		
 		for (Bubble b : this.bubbles) {
 			b.draw(g);
 		}
@@ -93,6 +127,7 @@ public class Aquarium extends GFX {
 		}
 		
 		g.setColor(Color.green);
+		
 	}
 
 	public static void main(String[] args) {

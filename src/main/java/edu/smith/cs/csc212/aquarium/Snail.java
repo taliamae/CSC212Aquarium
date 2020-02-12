@@ -23,6 +23,11 @@ public class Snail {
 	 * The position of the Snail; y-coordinate.
 	 */
 	public int y;
+	
+	public boolean isSleep;
+	
+	//Shape eyeWhiteR;
+	//Shape eyeWhiteL;
 
 	/**
 	 * Create a snail at (sx, sy) with position s.
@@ -35,7 +40,12 @@ public class Snail {
 		this.setSide(s);
 		this.x = sx;
 		this.y = sy;
+		this.isSleep = true;
+		
+		//this.eyeWhiteR = new Ellipse2D.Double(35 - 4, -28, 12, 12);
+		//this.eyeWhiteL = new Ellipse2D.Double(-4, -28, 12, 12);
 	}
+	
 
 	/**
 	 * Change which side of the the snail thinks its on.
@@ -43,13 +53,61 @@ public class Snail {
 	 * @param s - one of "top", "bottom", "left" or "right".
 	 */
 	public void setSide(String s) {
+		//if (this.x < 50 && this.y < 200) {
 		this.direction = s.toLowerCase();
-	}
+		System.out.println("Starting");
+		//}
 
+	}
+	
+	public void sleep() {
+		// Need to put snail to sleep and stop it from moving
+		System.out.print("let me sleep!");
+		this.isSleep = true;
+		
+	}
+	
+	public void wake() {
+		this.isSleep = false;
+		this.move();
+	}
 	/**
 	 * TODO: move the snail about.
 	 */
 	public void move() {
+		//System.out.println(this.direction);
+		
+		if (!this.isSleep) {
+			if("top".equals(this.direction)) {
+				this.x += 1;
+				if (this.x > 450 && this.y < 200) {
+					this.setSide("right");
+					System.out.println("rotate me right");
+				}
+				
+			} else if("right".equals(this.direction)) {
+				this.y += 1;
+				if (this.x > 450 && this.y > 450) {
+					this.setSide("bottom");
+					System.out.println("rotate me bottom");
+					
+			} else if ("bottom".equals(this.direction)) {
+				System.out.println("I'm a bottom now");
+				this.x -= 1;
+				if (this.x < 50 && this.y < 200) {
+					this.setSide("left");
+					System.out.println("rotate me left");
+				}
+				
+			} else if("left".equals(this.direction)) {
+				this.y -= 1;
+				if (this.x < 50 && this.y > 450) {
+					this.setSide("top");
+					System.out.println("rotate me top");
+					}
+				}
+			}
+		}
 
 	}
 
@@ -61,7 +119,7 @@ public class Snail {
 	public void draw(Graphics2D g) {
 		// By calling move here, if we want to move our snail, we can do so.
 		// Move gets called by draw, so whenever draw gets called.
-		this.move();
+		//this.move();
 
 		// By making a new Graphics2D object, we can move everything that gets drawn to
 		// it.
@@ -98,7 +156,7 @@ public class Snail {
 	 * @param shellColor The color of the snail shell.
 	 * @param eyeColor   The color of the snail eye.
 	 */
-	public static void drawSnail(Graphics2D g, Color bodyColor, Color shellColor, Color eyeColor) {
+	public void drawSnail(Graphics2D g, Color bodyColor, Color shellColor, Color eyeColor) {
 		Shape body = new Rectangle2D.Double(0, 0, 40, 50);
 		Shape tentacleL = new Rectangle2D.Double(0, -20, 5, 20);
 		Shape eyeWhiteL = new Ellipse2D.Double(-4, -28, 12, 12);
@@ -107,7 +165,11 @@ public class Snail {
 		g.setColor(bodyColor);
 		g.fill(body);
 		g.fill(tentacleL);
-		g.setColor(Color.white);
+		if (this.isSleep) {
+			g.setColor(Color.black);
+		} else {
+			g.setColor(Color.white);
+		}
 		g.fill(eyeWhiteL);
 		g.setColor(eyeColor);
 		g.fill(eyePupilL);
@@ -118,7 +180,11 @@ public class Snail {
 
 		g.setColor(bodyColor);
 		g.fill(tentacleR);
-		g.setColor(Color.white);
+		if (this.isSleep) {
+			g.setColor(Color.black);
+		} else {
+			g.setColor(Color.white);
+		}
 		g.fill(eyeWhiteR);
 		g.setColor(eyeColor);
 		g.fill(eyePupilR);

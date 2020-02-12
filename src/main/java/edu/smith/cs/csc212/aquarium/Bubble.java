@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
 public class Bubble {
@@ -27,12 +28,20 @@ public class Bubble {
 	public void draw(Graphics2D g) {
 		// Construct bubble as ellipse object
 		Shape bubble = new Ellipse2D.Double(this.x + this.drift, this.y, 
-					radius, radius);
-			
+					this.radius + 2, this.radius + 2);
+		
 		// Draw bubbles
 		g.setColor(Color.white);
 		g.fill(bubble);
 		g.draw(bubble);
+		
+		// Construct treasure chest for bubbles to come out of
+		Shape treasureChest = new Rectangle2D.Double(225, 470, 50, 30);
+		
+		// Draw treasure chest
+		g.setColor(Color.red);
+		g.fill(treasureChest);
+		g.draw(treasureChest);
 		
 		// Move bubbles.
 		move();
@@ -46,7 +55,7 @@ public class Bubble {
 		}
 		
 		// Give bubbles a new x place when off top of screen
-		if (this.y < 0) {
+		if (this.y < -10) {
 			this.x = rand.nextInt(500);
 		}
 		
