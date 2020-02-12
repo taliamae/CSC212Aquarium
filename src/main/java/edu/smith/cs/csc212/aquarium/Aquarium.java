@@ -39,10 +39,13 @@ public class Aquarium extends GFX {
 		// Here we ask GFX to make our window of size WIDTH and HEIGHT.
 		// Don't change this here, edit the variables instead.
 		super(WIDTH, HEIGHT);
+		for (int i=0; i<bubbles.length; i++) {
+			bubbles[i] = new Bubble();
+		}
 	}
 
 	int fish1X = getWidth() + 100;
-	int fish2X = getWidth() + 300;
+	int fish2 = getWidth() + 300;
 	int fish3X = - 100;
 	
 	// Initiate instances of fish
@@ -52,11 +55,17 @@ public class Aquarium extends GFX {
 	Fish marvin = new Fish(Color.yellow, 175, 70, false, true);
 	Fish amy = new Fish(Color.pink, 222, 300, true, false);
 	
+	// Creates an array of bubbles
+	Bubble[] bubbles = new Bubble[10];
+	
+
+	
 	@Override
 	public void draw(Graphics2D g) {
 		// Draw the "ocean" background.
 		g.setColor(Color.blue);
 		g.fillRect(0, 0, getWidth(), getHeight());
+		
 		
 		// Draw the fish
 		nemo.draw(g);
@@ -74,13 +83,16 @@ public class Aquarium extends GFX {
 
 		// Draw our snail!
 		algorithm.draw(g);
-
-		Bubble bubbles = new Bubble(0, 0);
-		bubbles.draw(g);
+		
+		for (Bubble b : this.bubbles) {
+			b.draw(g);
+		}
 		
 		if (fish3X > getWidth() + 100) {
 			fish3X = -100;
 		}
+		
+		g.setColor(Color.green);
 	}
 
 	public static void main(String[] args) {
