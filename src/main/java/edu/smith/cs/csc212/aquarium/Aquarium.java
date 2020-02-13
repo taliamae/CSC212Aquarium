@@ -2,8 +2,6 @@ package edu.smith.cs.csc212.aquarium;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.geom.Rectangle2D;
 
 import me.jjfoley.gfx.GFX;
 
@@ -74,8 +72,6 @@ public class Aquarium extends GFX {
 	int oceanG = 0;
 	int oceanB = 200;
 	
-
-	
 	@Override
 	public void draw(Graphics2D g) {
 		// Draw the "ocean" background.
@@ -84,16 +80,26 @@ public class Aquarium extends GFX {
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
 		// Make the ocean increasingly more green
-		this.oceanG += 1;
-		if (this.oceanG == 200) {
+		//System.out.println(this.oceanG);
+		
+		if (this.oceanG >= 190) {
 			algorithm.wake();
-			this.oceanG -= 1;
-			System.out.println("getting bluer");
-		}
-		// When snail eats all algae, they go back to sleep
-		if (this.oceanG == 0) {
+		} else if (this.oceanG == 0) {
 			algorithm.sleep();
 		}
+		if (algorithm.isSleep) {
+			this.oceanG += 1;
+			//algorithm.move();
+			
+		} else {
+			this.oceanG -= 1;
+			algorithm.move();
+	
+		}
+		// When snail eats all algae, they go back to sleep
+		//if (this.oceanG == 0) {
+			//algorithm.sleep();
+		//}
 		
 		// Draw the fish
 		nemo.draw(g);
@@ -122,9 +128,6 @@ public class Aquarium extends GFX {
 			b.draw(g);
 		}
 		
-		if (fish3X > getWidth() + 100) {
-			fish3X = -100;
-		}
 		
 		g.setColor(Color.green);
 		

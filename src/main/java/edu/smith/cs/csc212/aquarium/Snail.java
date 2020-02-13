@@ -71,6 +71,7 @@ public class Snail {
 		this.isSleep = false;
 		this.move();
 	}
+	
 	/**
 	 * TODO: move the snail about.
 	 */
@@ -94,7 +95,7 @@ public class Snail {
 			} else if ("bottom".equals(this.direction)) {
 				System.out.println("I'm a bottom now");
 				this.x -= 1;
-				if (this.x < 50 && this.y < 200) {
+				if (this.x < 50 && this.y < 450) {
 					this.setSide("left");
 					System.out.println("rotate me left");
 				}

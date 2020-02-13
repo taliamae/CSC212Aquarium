@@ -38,7 +38,7 @@ public class Bubble {
 		// Construct treasure chest for bubbles to come out of
 		Shape treasureChest = new Rectangle2D.Double(225, 470, 50, 30);
 		
-		// Draw treasure chest
+		// Draw treasure chest for bubbles to come out
 		g.setColor(Color.red);
 		g.fill(treasureChest);
 		g.draw(treasureChest);

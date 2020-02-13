@@ -99,7 +99,7 @@ public class Fish {
 		// Fish gain hunger when in foodBox
 		} else if (this.x > 300 && this.y > 300){
 			this.hunger += 5;
-			System.out.println(this.hunger);
+			//System.out.println(this.hunger);
 		}
 		
 		
